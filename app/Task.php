@@ -6,6 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
+    /**
+     * Nom de la table associée au modèle
+     * Pas nécessaire si vous nommer vos table au pluriel
+     *
+     * @var string
+     */
+    protected $table = 'task';
 
     /**
      * Liste des attributs modifiables

@@ -33,8 +33,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->put('tasks/{id}', ['uses' => 'TaskController@update']);
 
     // Fermeture d'une tâche : tâche terminée
-    $router->put('tasks/{id}/completed', ['uses' => 'TaskController@completed']);
+    // $router->put('tasks/{id}/completed', ['uses' => 'TaskController@completed']);
 
     // Ouverture d'une tâche : tâche non-terminée
-    $router->delete('tasks/{id}/completed', ['uses' => 'TaskController@unCompleted']);
+    // $router->delete('tasks/{id}/completed', ['uses' => 'TaskController@unCompleted']);
 });

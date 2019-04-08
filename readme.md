@@ -114,7 +114,14 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateTaskTable extends Migration
 {
-    /**
+  /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'task';
+  
+  /**
      * Run the migrations.
      *
      * @return void
@@ -205,4 +212,95 @@ class Task extends Model
 ## Création des routes de l'API
 
 Les routes sont déclarée dans le fichier `routes/web.php` de Lumen. Ouvrez ce fichier et modifier-le comme suit :
+
+```php
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Application Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register all of the routes for an application.
+| It is a breeze. Simply tell Lumen the URIs it should respond to
+| and give it the Closure to call when that URI is requested.
+|
+*/
+
+$router->get('/', function () use ($router) {
+    return $router->app->version();
+});
+// Création du groupe de route api : http://localhost:8000/api/
+$router->group(['prefix' => 'api'], function () use ($router) {
+
+    // Toutes les tâches
+    $router->get('tasks',  ['uses' => 'TaskController@showAllTasks']);
+
+    // Détail d'une tâche
+    $router->get('tasks/{id}', ['uses' => 'TaskController@showOneTask']);
+
+    // Ajout d'une tâche
+    $router->post('tasks', ['uses' => 'TaskController@create']);
+
+    // Suppression d'une tâche
+    $router->delete('tasks/{id}', ['uses' => 'TaskController@delete']);
+
+    // Modification d'une tâche
+    $router->put('tasks/{id}', ['uses' => 'TaskController@update']);
+
+    // Fermeture d'une tâche : tâche terminée
+    $router->put('tasks/{id}/completed', ['uses' => 'TaskController@completed']);
+
+    // Ouverture d'une tâche : tâche non-terminée
+    $router->delete('tasks/{id}/completed', ['uses' => 'TaskController@unCompleted']);
+});
+```
+
+Dans le code ci-dessus, nous avons abstrait la fonctionnalité de chaque route dans un contrôleur, `TaskController`. 
+
+Nous avons également créer un groupe de routes. Les groupes de routes permettent de partager des attributs de routes, tels que des middleware ou des namespaces, sur un grand nombre de routes.
+
+Dans notre exemple, chaque route aura un préfixe `/api`.
+
+Prochaine étape, création du controller `TaskController`.
+
+
+
+## Création du controller `TaskController`
+
+Les controlleurs se trouvent dans le dossier `app/Http/Controllers`. 
+
+Créer un fichier TaskController.php et ajoutez-y le code suivant :
+
+
+
+
+
+
+
+Analysons le code ci-dessus. Tout d'abord, nous avions besoin du modèle Task, utilisez App\Author. Pour aller de l'avant, nous avons invoqué les méthodes nécessaires à partir du modèle Task pour chaque méthode de contrôleur. Nous avons ici cinq méthodes. showAllAuthors, showOneAuthor, créer, mettre à jour et supprimer.
+
+showAllAuthors - /GET
+showOneAuthor - /GET
+créer - /POST
+update - /PUT
+supprimer - /DELETE
+
+Par exemple, si vous faites une demande POST à /api/authors API endpoint, la fonction create sera appelée.
+
+La méthode showAllAuthors vérifie toutes les ressources de l'task.
+La méthode de création crée une nouvelle ressource task.
+La méthode showOneAuthor vérifie la présence d'une seule ressource task.
+La méthode de mise à jour vérifie si une ressource task existe et permet la mise à jour de la ressource.
+
+La méthode de suppression vérifie si une ressource task existe et la supprime.
+
+response() est une fonction d'aide globale qui obtient une instance de la factory de réponse. response()->json() retourne simplement la réponse au format JSON.
+200 est un code d'état HTTP qui indique que la requête a réussi.
+201 est un code d'état HTTP qui indique qu'une nouvelle ressource vient d'être créée.
+findOrFail lance une méthode ModelNotFoundException si aucun résultat n'est trouvé.
+
+Enfin, testez les routes API avec Postman.
+
+Traduit avec www.DeepL.com/Translator
 
