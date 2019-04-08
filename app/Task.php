@@ -21,7 +21,7 @@ class Task extends Model
 
     /**
      * Liste des attributs cachés
-     * Seront exclus dans les réponses
+     * Seront exclus de l'objet JSON dans les réponses
      *
      * @var array
      */

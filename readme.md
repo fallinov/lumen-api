@@ -160,8 +160,49 @@ Vérifier que la table `task` a correctement été créée dans votre base de do
 
 ## Création du modèle `Task`
 
-Les modèles se trouvent dans le dossier `app/` . Créer le fichier `app/Task.php` en y ajoutant le code suivant.
+L'ORM Eloquent que nous avons précédement activé, offre une implémentation pour travailler avec votre base de données. 
 
-```shell
-php artisan make:model Task
+Chaque table de base de données a un "Modèle" correspondant qui est utilisé pour interagir avec cette table. Les modèles vous permettent d'interroger les données de vos tables et d'insérer de nouveaux enregistrements dans la table.
+
+Les modèles se trouvent dans le dossier `app/` de Lumen. 
+
+Créez le fichier `app/Task.php` en y ajoutant le code suivant :
+
+```php
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Task extends Model
+{
+
+    /**
+     * Liste des attributs modifiables
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'title', 'content', 'order', 'completed', 'due_date'
+    ];
+
+
+
+
+    /**
+     * Liste des attributs cachés
+     * Seront exclus de l'objet JSON dans les réponses
+     *
+     * @var array
+     */
+    protected $hidden = [];
+}
 ```
+
+
+
+## Création des routes de l'API
+
+Les routes sont déclarée dans le fichier `routes/web.php` de Lumen. Ouvrez ce fichier et modifier-le comme suit :
+
