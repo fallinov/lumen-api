@@ -54,12 +54,7 @@ ORM (object-relational mapping)  : interface entre un programme applicatif et un
 
 Fournit une interface **statique** des classes disponibles dans les différents sercvices de l'application.
 
-Les Facades de Laravel sont définies dans le namespace `Illuminate\Support\Facades`. On peut ainsi facilement y accéder :
-
-use Illuminate\Support\Facades\Cache;
-Route::get('/cache', function () {
-return Cache::get('key');
-});
+Les Facades de Laravel sont définies dans le namespace `Illuminate\Support\Facades`.
 
 #### Paramètre BD
 
@@ -152,9 +147,9 @@ Excéucter la migration avec la commande suivante.
 php artisan migrate
 ```
 
-Vérifier que la table `task` a correctement été créée dans votre base de données.
+Vérifier que la table `task` a correctement été créée dans votre base de données.[]()
 
-![bd-table-task](/Users/stevefallet/Dev/lumen-api/_docs/bd-table-task.png)
+![bd-table-task](_docs/bd-table-task.png)
 
 
 
