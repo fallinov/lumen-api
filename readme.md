@@ -114,14 +114,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateTaskTable extends Migration
 {
-  /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'task';
-  
-  /**
+    /**
      * Run the migrations.
      *
      * @return void
@@ -184,6 +177,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
+    /**
+     * Nom de la table associée au modèle
+     * Pas nécessaire si vous nommer vos table au pluriel
+     *
+     * @var string
+     */
+    protected $table = 'task';
 
     /**
      * Liste des attributs modifiables
@@ -203,7 +203,7 @@ class Task extends Model
      *
      * @var array
      */
-    protected $hidden = [];
+    protected $hidden = ['created_at','updated_at'];
 }
 ```
 

@@ -38,4 +38,22 @@ class TaskController extends Controller
         Task::findOrFail($id)->delete();
         return response('Deleted Successfully', 200);
     }
+
+    public function completed($id, Request $request)
+    {
+        $task = Task::findOrFail($id);
+        $task->completed = 1;
+        $task->update();
+
+        return response()->json($task, 200);
+    }
+
+    public function unCompleted($id, Request $request)
+    {
+        $task = Task::findOrFail($id);
+        $task->completed = 0;
+        $task->update();
+
+        return response()->json($task, 200);
+    }
 }
