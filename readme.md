@@ -230,7 +230,7 @@ Les routes sont déclarée dans le fichier `routes/web.php` de Lumen. Ouvrez ce 
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
-// Création du groupe de route api : http://localhost:8000/api/
+// Création du groupr api : http://localhost:8000/api/
 $router->group(['prefix' => 'api'], function () use ($router) {
 
     // Toutes les tâches
@@ -249,11 +249,12 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->put('tasks/{id}', ['uses' => 'TaskController@update']);
 
     // Fermeture d'une tâche : tâche terminée
-    $router->put('tasks/{id}/completed', ['uses' => 'TaskController@completed']);
+     $router->put('tasks/{id}/completed', ['uses' => 'TaskController@completed']);
 
     // Ouverture d'une tâche : tâche non-terminée
-    $router->delete('tasks/{id}/completed', ['uses' => 'TaskController@unCompleted']);
+     $router->delete('tasks/{id}/completed', ['uses' => 'TaskController@unCompleted']);
 });
+
 ```
 
 Dans le code ci-dessus, nous avons abstrait la fonctionnalité de chaque route dans un contrôleur, `TaskController`. 
@@ -272,11 +273,67 @@ Les controlleurs se trouvent dans le dossier `app/Http/Controllers`.
 
 Créer un fichier TaskController.php et ajoutez-y le code suivant :
 
+```php
+<?php
 
+namespace App\Http\Controllers;
 
+use App\Task;
+use Illuminate\Http\Request;
 
+class TaskController extends Controller
+{
 
+    public function showAllTasks()
+    {
+        return response()->json(Task::all());
+    }
 
+    public function showOneTask($id)
+    {
+        return response()->json(Task::find($id));
+    }
+
+    public function create(Request $request)
+    {
+        $task = Task::create($request->all());
+
+        return response()->json($task, 201);
+    }
+
+    public function update($id, Request $request)
+    {
+        $task = Task::findOrFail($id);
+        $task->update($request->all());
+
+        return response()->json($task, 200);
+    }
+
+    public function delete($id)
+    {
+        Task::findOrFail($id)->delete();
+        return response('Deleted Successfully', 200);
+    }
+
+    public function completed($id, Request $request)
+    {
+        $task = Task::findOrFail($id);
+        $task->completed = 1;
+        $task->update();
+
+        return response()->json($task, 200);
+    }
+
+    public function unCompleted($id, Request $request)
+    {
+        $task = Task::findOrFail($id);
+        $task->completed = 0;
+        $task->update();
+
+        return response()->json($task, 200);
+    }
+}
+```
 
 Analysons le code ci-dessus. Tout d'abord, nous avions besoin du modèle Task, utilisez App\Author. Pour aller de l'avant, nous avons invoqué les méthodes nécessaires à partir du modèle Task pour chaque méthode de contrôleur. Nous avons ici cinq méthodes. showAllAuthors, showOneAuthor, créer, mettre à jour et supprimer.
 
