@@ -156,3 +156,12 @@ Vérifier que la table `task` a correctement été créée dans votre base de do
 
 ![bd-table-task](/Users/stevefallet/Dev/lumen-api/_docs/bd-table-task.png)
 
+
+
+## Création du modèle `Task`
+
+Les modèles se trouvent dans le dossier `app/` . Créer le fichier `app/Task.php` en y ajoutant le code suivant.
+
+```shell
+php artisan make:model Task
+```
