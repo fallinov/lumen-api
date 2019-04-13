@@ -147,7 +147,7 @@ Excéucter la migration avec la commande suivante.
 php artisan migrate
 ```
 
-Vérifier que la table `task` a correctement été créée dans votre base de données.[]()
+Vérifier que la table `task` a correctement été créée dans votre base de données.
 
 ![bd-table-task](_docs/bd-table-task.png)
 
@@ -286,7 +286,7 @@ class TaskController extends Controller
 
     public function showOneTask($id)
     {
-        return response()->json(Task::find($id));
+        return response()->json(Task::findOrFail($id));
     }
 
     public function create(Request $request)
@@ -330,29 +330,64 @@ class TaskController extends Controller
 }
 ```
 
-Analysons le code ci-dessus. Tout d'abord, nous avions besoin du modèle Task, utilisez App\Author. Pour aller de l'avant, nous avons invoqué les méthodes nécessaires à partir du modèle Task pour chaque méthode de contrôleur. Nous avons ici cinq méthodes. showAllAuthors, showOneAuthor, créer, mettre à jour et supprimer.
+Analysons le code ci-dessus. 
 
-showAllAuthors - /GET
-showOneAuthor - /GET
-créer - /POST
-update - /PUT
-supprimer - /DELETE
+Tout d'abord, il faut importer le modèle `Task`, `use App\Task`. Ensuite nous avons créé les  méthodes  du contrôleur appelées par nos routes.
 
-Par exemple, si vous faites une demande POST à /api/authors API endpoint, la fonction create sera appelée.
+Par exemple, si vous faites une requête `POST` à `/api/tasks` , la méthode `create` sera appelée.
 
-La méthode showAllAuthors vérifie toutes les ressources de l'task.
-La méthode de création crée une nouvelle ressource task.
-La méthode showOneAuthor vérifie la présence d'une seule ressource task.
-La méthode de mise à jour vérifie si une ressource task existe et permet la mise à jour de la ressource.
+### Tableau des routes et méthodes contrôleur
 
-La méthode de suppression vérifie si une ressource task existe et la supprime.
+| Verbe | Route | Méthode contrôleur | Description |
+| -------------- | -------------- | --------------------- | -------------- |
+| GET | api/tasks | showAllTasks          | Retourne un tableau de toutes les tâches.                    |
+| GET | api/tasks/{id} | showOneTask | Vérifie l'existance de la tâche et la retourne. |
+| POST | api/tasks | create | Créer une nouvelle tâche et la retourne. |
+| PUT | api/tasks/{id} | update | Vérifie l'existance de la tâche, la mets à jour et la retourne. |
+| DELETE | api/tasks/{id} | delete | Vérifie l'existance de la tâche, la supprime et retourne un message de confirmation. |
+| PUT | api/tasks/{id}/completed | comleted | Vérifie l'existance de la tâche, mets sa propriété `completed` à `1`, la mets à jour et la retourne. |
+| DELETE | api/tasks/{id}/completed | unCompleted | Vérifie l'existance de la tâche, mets sa propriété `completed` à `0` et la retourne. |
 
-response() est une fonction d'aide globale qui obtient une instance de la factory de réponse. response()->json() retourne simplement la réponse au format JSON.
-200 est un code d'état HTTP qui indique que la requête a réussi.
-201 est un code d'état HTTP qui indique qu'une nouvelle ressource vient d'être créée.
-findOrFail lance une méthode ModelNotFoundException si aucun résultat n'est trouvé.
+Autres infos :
 
-Enfin, testez les routes API avec Postman.
+* `response()` est une fonction globale qui retourne une instance de la factory `response`. 
+* `response()->json()` retourne simplement la réponse au format JSON.
+* `200` est un code d'état HTTP qui indique que la requête a réussi.
+* `201` est un code d'état HTTP qui indique qu'une nouvelle ressource vient d'être créée.
+* `findOrFail` lance une méthode `ModelNotFoundException` si aucun résultat n'est trouvé.
 
-Traduit avec www.DeepL.com/Translator
 
+
+# Test des routes avec Postman
+
+## Liste des tâches
+
+![get-tasks](/Users/stevefallet/Dev/lumen-api/_docs/get-tasks.png)
+
+## Détail d'une tâche
+
+![get-task](/Users/stevefallet/Dev/lumen-api/_docs/get-task.png)
+
+### Tâche introuvable - erreur 404
+
+![get-task-error](/Users/stevefallet/Dev/lumen-api/_docs/get-task-error.png)
+
+## Ajouter une tâche
+
+![post-task](/Users/stevefallet/Dev/lumen-api/_docs/post-task.png)
+
+## Modifier une tâche
+
+![put-task](/Users/stevefallet/Dev/lumen-api/_docs/put-task.png)
+
+## Supprimer une tâche
+
+![delete-task](/Users/stevefallet/Dev/lumen-api/_docs/delete-task.png)
+
+## Terminer une tâche
+
+![put-task-comleted](/Users/stevefallet/Dev/lumen-api/_docs/put-task-comleted.png)
+
+## Ouvrir une tâche
+
+![delete-task-comleted](/Users/stevefallet/Dev/lumen-api/_docs/delete-task-comleted.png)

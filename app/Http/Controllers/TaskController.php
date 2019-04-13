@@ -15,7 +15,7 @@ class TaskController extends Controller
 
     public function showOneTask($id)
     {
-        return response()->json(Task::find($id));
+        return response()->json(Task::findOrFail($id));
     }
 
     public function create(Request $request)
