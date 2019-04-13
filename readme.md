@@ -410,3 +410,10 @@ Ajoutons une validation pour la création d'une nouvelle tâche dans notre contr
 
 
 
+Règles de validation disponibles : https://laravel.com/docs/5.8/validation#available-validation-rules
+
+
+
+
+
+### Traduire les messages d'erreur
