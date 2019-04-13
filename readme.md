@@ -358,36 +358,55 @@ Autres infos :
 
 
 
-# Test des routes avec Postman
+## Test des routes avec Postman
 
-## Liste des tâches
+### Liste des tâches
 
 ![get-tasks](/Users/stevefallet/Dev/lumen-api/_docs/get-tasks.png)
 
-## Détail d'une tâche
+### Détail d'une tâche
 
 ![get-task](/Users/stevefallet/Dev/lumen-api/_docs/get-task.png)
 
-### Tâche introuvable - erreur 404
+#### Tâche introuvable - erreur 404
 
 ![get-task-error](/Users/stevefallet/Dev/lumen-api/_docs/get-task-error.png)
 
-## Ajouter une tâche
+### Ajouter une tâche
 
 ![post-task](/Users/stevefallet/Dev/lumen-api/_docs/post-task.png)
 
-## Modifier une tâche
+### Modifier une tâche
 
 ![put-task](/Users/stevefallet/Dev/lumen-api/_docs/put-task.png)
 
-## Supprimer une tâche
+### Supprimer une tâche
 
 ![delete-task](/Users/stevefallet/Dev/lumen-api/_docs/delete-task.png)
 
-## Terminer une tâche
+### Terminer une tâche
 
 ![put-task-comleted](/Users/stevefallet/Dev/lumen-api/_docs/put-task-comleted.png)
 
-## Ouvrir une tâche
+### Ouvrir une tâche
 
 ![delete-task-comleted](/Users/stevefallet/Dev/lumen-api/_docs/delete-task-comleted.png)
+
+## Validation des données
+
+
+
+Dans le développement d'applications, une règle d'or : 
+
+> Ne jamais faire confiance à l'utilisateur, toujours valider les données reçues !
+
+Lumen nous facillite cette tâche en nous fournissant la *helper method* `validate()` de l'objet `Illuminate\Http\Request`.
+
+Si toute les règles de validation passent, le code s'exécutera noremalement. Par contre, s'il une validation échoue, une exception sera soulevée et le message d'erreur correspondant envoyé à l'utilisateur.
+
+Dans le cas d'une requête HTTP classique une réponse de type redirection sera générée, alors qu'une réponse au format JSON sera envoyé pour les requête AJAX.
+
+Ajoutons une validation pour la création d'une nouvelle tâche dans notre contrôleur :
+
+
+
