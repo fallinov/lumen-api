@@ -17,3 +17,13 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'email' => $faker->email,
     ];
 });
+
+$factory->define(App\Task::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->sentence,
+        'content' => $faker->paragraph,
+        'order' => $faker->numberBetween(1,100),
+        'completed' => (int) $faker->boolean,
+        'due_date' => $faker->date('Y-m-d H:i:s')
+    ];
+});

@@ -480,6 +480,40 @@ Reste encore à traduire correctement le nom des champs, en les précisant dans 
 
 ## Tests unitaires
 
+Pour créer et lancer les tests, Lumen utilise phpunit : https://phpunit.de/index.html
+
+Les tests se trouvent dans le dossier `tests/` , se dossier contient un exemple de test : `ExampelTest.php` et une classe abstraite dont doivent hériter tous les tests Lumen : `TestCase.php`.
+
+Pour lancer les tests, exécutez la commande suivante dans le terminal :
+
+```shell
+./vendor/bin/phpunit
+```
+
+Résultat des tests :
+
+```shell
+PHPUnit 7.5.8 by Sebastian Bergmann and contributors.
+
+.                                                                   1 / 1 (100%)
+
+Time: 52 ms, Memory: 8.00 MB
+
+OK (1 test, 1 assertion)
+```
+
+
+
+Créer une factory
+
+```php
+use DatabaseMigrations; // Rollback la BD après chaque tests => Supprime les tables
+// OU 
+use DatabaseTransactions; // Rollback les transactions de chaques tests
+```
+
+
+
 
 
 ## Authentification
