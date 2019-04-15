@@ -408,12 +408,87 @@ Dans le cas d'une requête HTTP classique une réponse de type redirection sera 
 
 Ajoutons une validation pour la création d'une nouvelle tâche dans notre contrôleur :
 
+```php
+public function create(Request $request)
+{
+    $this->validate($request, [
+        'title' => 'required',
+        'order' => 'required|integer|unique:task,order',
+        'completed' => 'boolean',
+        'due_date' => 'date_format:Y-m-d H:i:s' // ou simplement date
+    ]);
 
+    $task = Task::create($request->all());
+
+    return response()->json($task, 201);
+}
+```
 
 Règles de validation disponibles : https://laravel.com/docs/5.8/validation#available-validation-rules
 
 
 
-
-
 ### Traduire les messages d'erreur
+
+1. Télécharger le fichier de validation `validation.php` de la langue désirée sur ce dépot : https://github.com/caouecs/Laravel-lang. Vous le trouverez la version française dans le sous-dossier  `src/fr/` du dépot.
+2. Copier le dans de Lumen à cet emplcement : `resources/fr/validation.php`
+3. Définir la langue principale dans `bootstrap/app.php` en ajoutant :
+    `app('translator')->setLocale('fr');` avant l'instruction `return $app;`
+
+Vos m'essages s'affichent maintenant en français.
+
+Reste encore à traduire correctement le nom des champs, en les précisant dans le tabelau `attributes` du fichier `resources/fr/validation.php`.
+
+```php
+  'attributes' => [
+        'name'                  => 'nom',
+        'username'              => "nom d'utilisateur",
+        'email'                 => 'adresse email',
+        'first_name'            => 'prénom',
+        'last_name'             => 'nom',
+        'password'              => 'mot de passe',
+        'password_confirmation' => 'confirmation du mot de passe',
+        'city'                  => 'ville',
+        'country'               => 'pays',
+        'address'               => 'adresse',
+        'phone'                 => 'téléphone',
+        'mobile'                => 'portable',
+        'age'                   => 'âge',
+        'sex'                   => 'sexe',
+        'gender'                => 'genre',
+        'day'                   => 'jour',
+        'month'                 => 'mois',
+        'year'                  => 'année',
+        'hour'                  => 'heure',
+        'minute'                => 'minute',
+        'second'                => 'seconde',
+        'title'                 => 'titre',
+        'content'               => 'contenu',
+        'description'           => 'description',
+        'excerpt'               => 'extrait',
+        'date'                  => 'date',
+        'time'                  => 'heure',
+        'available'             => 'disponible',
+        'size'                  => 'taille',
+        'order'                 => 'ordre',
+        'completed'             => 'terminé',
+        'due_date'              => 'date de fin'
+    ],
+```
+
+
+
+## Tests unitaires
+
+
+
+## Authentification
+
+
+
+## Documentation de l'API
+
+
+
+## 
+
