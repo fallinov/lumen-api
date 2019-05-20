@@ -362,23 +362,23 @@ Autres infos :
 
 ### Liste des tâches
 
-![get-tasks](/Users/stevefallet/Dev/lumen-api/_docs/get-tasks.png)
+![get-tasks](_docs/get-tasks.png)
 
 ### Détail d'une tâche
 
-![get-task](/Users/stevefallet/Dev/lumen-api/_docs/get-task.png)
+![get-task](_docs/get-task.png)
 
 #### Tâche introuvable - erreur 404
 
-![get-task-error](/Users/stevefallet/Dev/lumen-api/_docs/get-task-error.png)
+![get-task-error](_docs/get-task-error.png)
 
 ### Ajouter une tâche
 
-![post-task](/Users/stevefallet/Dev/lumen-api/_docs/post-task.png)
+![post-task](_docs/post-task.png)
 
 ### Modifier une tâche
 
-![put-task](/Users/stevefallet/Dev/lumen-api/_docs/put-task.png)
+![put-task](_docs/put-task.png)
 
 ### Supprimer une tâche
 
@@ -386,11 +386,11 @@ Autres infos :
 
 ### Terminer une tâche
 
-![put-task-comleted](/Users/stevefallet/Dev/lumen-api/_docs/put-task-comleted.png)
+![put-task-comleted](_docs/put-task-comleted.png)
 
 ### Ouvrir une tâche
 
-![delete-task-comleted](/Users/stevefallet/Dev/lumen-api/_docs/delete-task-comleted.png)
+![delete-task-comleted](_docs/delete-task-comleted.png)
 
 ## Validation des données
 
