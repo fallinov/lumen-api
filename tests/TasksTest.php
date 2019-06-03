@@ -11,19 +11,26 @@ class TasksTest extends TestCase
     public function testCreateATask()
     {
         //$faker = Faker::create();
+
+        // Crée un nouvel objet Task avec des données aléatoire
+        // La méthode make() crée un objet sans le sauvegarder dans la BD
+        // La méthode create() créer un objet et le sauvegarde dans la BD
         $newTask = factory('App\Task')->make();
-        //var_dump($newTask->toArray());
-        $response = $this->call('POST','/api/tasks', $newTask->toArray());
-        $this->assertEquals(201, $response->status());
-        $this->seeJson($newTask->toArray());
-        $this->seeJsonStructure([
-            "id",
-            "title",
-            "content",
-            "order",
-            "completed",
-            "due_date",
-        ]);
+
+        // Appelle la route de création d'une tache et teste la réponse
+        $this->post('/api/tasks', $newTask->toArray())
+            ->seeStatusCode(201) // Test si status de la réponse = 201
+            ->seeJson($newTask->toArray()) // Test si nouvelle tâche dans la réponse
+            ->seeJsonStructure([ // Test si la structure de la réponse est OK
+                "id",
+                "title",
+                "content",
+                "order",
+                "completed",
+                "due_date",
+            ]);
+
+        // Test si nouvelle tâche existe dans la BD
         $this->seeInDatabase('task', $newTask->toArray());
 
     }
@@ -34,8 +41,14 @@ class TasksTest extends TestCase
         $newTask = factory('App\Task')->make([
             'title' => ''
         ]);
-        $response = $this->call('POST','/api/tasks', $newTask->toArray());
-        $this->assertEquals(422, $response->status());
+
+        $this->post('/api/tasks', $newTask->toArray())
+            ->seeStatusCode(422) // Test si status de la réponse = 422
+            ->seeJsonContains([ // Test si le contenu de la réponse est OK
+                    "title" => ["Le champ titre est obligatoire."]
+            ]);
+
+
         $this->notSeeInDatabase('task', $newTask->toArray());
     }
 
@@ -43,9 +56,19 @@ class TasksTest extends TestCase
     public function testGetAllTasks()
     {
         // Création de 10 tâches dans la BD
-        $tasks = factory('App\Task', 10)->create();
-        $response = $this->call('GET', '/api/tasks');
-        $this->assertEquals(200, $response->status());
-        $this->seeJsonEquals($tasks->toArray());
+        $tasks = factory('App\Task', 5)->create();
+
+        $this->get('/api/tasks')
+            ->seeStatusCode(200)
+            ->seeJsonStructure([
+                '*' => [
+                    "id",
+                    "title",
+                    "content",
+                    "order",
+                    "completed",
+                    "due_date",
+                    ]
+            ]);
     }
 }

@@ -18,12 +18,13 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
+// Définition d'une factory pour le modèle Task
 $factory->define(App\Task::class, function (Faker\Generator $faker) {
     return [
-        'title' => $faker->sentence,
-        'content' => $faker->paragraph,
-        'order' => $faker->numberBetween(1,100),
-        'completed' => (int) $faker->boolean,
-        'due_date' => $faker->date('Y-m-d H:i:s')
+        'title' => $faker->sentence, // Phrase aléatoire
+        'content' => $faker->paragraph, // Paragraphe aléatoire
+        'order' => $faker->numberBetween(1,100), // Nombre entre 1 et 100
+        'completed' => (int) $faker->boolean, // Booléan aléatoire converti en entier
+        'due_date' => $faker->date('Y-m-d H:i:s') // Date aléatoire au format MySQL
     ];
 });

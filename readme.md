@@ -204,6 +204,79 @@ class Task extends Model
 
 
 
+## Test de la base de données
+
+Pour tester une base de données, il faut avant tout la remplir avec des données de tests, ce que nous ferons avec en définissant des **Factories**.
+
+#### Définir une factory
+
+Les factories sont définies dans  `database/factories/ModelFactory.php`
+
+Ce fichier ce compose d'une factory de démonstration pour le modèle `User`.
+
+Lumen utilise la librairie `Faker` pour générer des données aléatoires qui rempliront la base.
+
+Documentation de Faker : https://github.com/fzaninotto/Faker
+
+##### ModelFactory.php
+
+```php
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Model Factories
+|--------------------------------------------------------------------------
+|
+| Here you may define all of your model factories. Model factories give
+| you a convenient way to create models for testing and seeding your
+| database. Just tell the factory how a default model should look.
+|
+*/
+
+$factory->define(App\User::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'email' => $faker->email,
+    ];
+});
+```
+
+
+
+Nous allons définir une factory pour notre modèle `Task` en ajoutant le code suivant à la fin du fichier `ModelFactory.php`.
+
+
+
+```php
+// Définition d'une factory pour le modèle Task
+$factory->define(App\Task::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->sentence, // Phrase avec texte aléatoire
+        'content' => $faker->paragraph, // Paragraphe de textes aléatoires
+        'order' => $faker->numberBetween(1,100), // Nombre aléatoire entre 1 et 100
+        'completed' => (int) $faker->boolean, // Booléan aléatoire converti en entier
+        'due_date' => $faker->date('Y-m-d H:i:s') // Date aléatoire au format MySQL
+    ];
+});
+```
+
+
+
+
+
+
+
+```php
+use DatabaseMigrations; // Rollback la BD après chaque tests => Supprime les tables
+// OU 
+use DatabaseTransactions; // Rollback les transactions de chaques tests
+```
+
+
+
+
+
 ## Création des routes de l'API
 
 Les routes sont déclarée dans le fichier `routes/web.php` de Lumen. Ouvrez ce fichier et modifier-le comme suit :
@@ -478,6 +551,10 @@ Reste encore à traduire correctement le nom des champs, en les précisant dans 
 
 
 
+
+
+
+
 ## Tests unitaires
 
 Pour créer et lancer les tests, Lumen utilise phpunit : https://phpunit.de/index.html
@@ -504,7 +581,64 @@ OK (1 test, 1 assertion)
 
 
 
-Créer une factory
+
+
+### Tester la base
+
+Pour tester une base de données, il faut avant tout la remplir avec des données de tests, ce que nous ferons avec en créant des **Factories**.
+
+#### Définir une factory
+
+Les factories sont définies dans  `database/factories/ModelFactory.php`
+
+Ce fichier ce compose d'une factory de démonstration pour le modèle `User`.
+
+Lumen utiliser la librairie `Faker` pour générer des données aléatoires qui rempliront la base.
+
+Documentation de Faker : https://github.com/fzaninotto/Faker
+
+```php
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Model Factories
+|--------------------------------------------------------------------------
+|
+| Here you may define all of your model factories. Model factories give
+| you a convenient way to create models for testing and seeding your
+| database. Just tell the factory how a default model should look.
+|
+*/
+
+$factory->define(App\User::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'email' => $faker->email,
+    ];
+});
+```
+
+Nous allons définir une factory pour notre modèle `Task` en ajoutant le code suivant à la fin du fichier `ModelFactory.php`.
+
+```php
+// Définition d'une factory pour le modèle Task
+$factory->define(App\Task::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->sentence, // Phrase avec texte aléatoire
+        'content' => $faker->paragraph, // Paragraphe de textes aléatoires
+        'order' => $faker->numberBetween(1,100), // Nombre aléatoire entre 1 et 100
+        'completed' => (int) $faker->boolean, // Booléan aléatoire converti en entier
+        'due_date' => $faker->date('Y-m-d H:i:s') // Date aléatoire au format MySQL
+    ];
+});
+```
+
+
+
+
+
+
 
 ```php
 use DatabaseMigrations; // Rollback la BD après chaque tests => Supprime les tables
