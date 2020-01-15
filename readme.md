@@ -38,6 +38,8 @@ Démarrer le serveur php, et tetser le bon fonctionnement de lumen : http://loca
 php -S localhost:8000 -t public
 ```
 
+Ou configurer votre serveur web en définissant le dossier `public/` comme dossier racine de votre site web.
+
 
 
 ### Eloquent et Facades
