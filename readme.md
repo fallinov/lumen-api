@@ -504,7 +504,7 @@ Règles de validation disponibles : https://laravel.com/docs/5.8/validation#avai
 ### Traduire les messages d'erreur
 
 1. Télécharger le fichier de validation `validation.php` de la langue désirée sur ce dépot : https://github.com/caouecs/Laravel-lang. Vous le trouverez la version française dans le sous-dossier  `src/fr/` du dépot.
-2. Copier le dans de Lumen à cet emplcement : `resources/fr/validation.php`
+2. Copier le dans de Lumen à cet emplcement : `resources/lang/fr/validation.php`
 3. Définir la langue principale dans `bootstrap/app.php` en ajoutant :
     `app('translator')->setLocale('fr');` avant l'instruction `return $app;`
 
