@@ -38,6 +38,8 @@ Démarrer le serveur php, et tetser le bon fonctionnement de lumen : http://loca
 php -S localhost:8000 -t public
 ```
 
+Ou configurer votre serveur web en définissant le dossier `public/` comme dossier racine de votre site web.
+
 
 
 ### Eloquent et Facades
@@ -94,7 +96,7 @@ Entrez la commande suivante pour créer le fichier de migration de la future tab
 php artisan make:migration create_task_table
 ```
 
-La nouvelle migration sera créée dans le dossier `datables/migrations`.
+La nouvelle migration sera créée dans le dossier `database/migrations`.
 
 Le nom des fichiers de migration se compose d'un timestamp permettant à Lumen de déterminer l'ordre des migrations. Exemple : `2019_04_08_135158_create_task_table.php`
 
@@ -659,4 +661,8 @@ use DatabaseTransactions; // Rollback les transactions de chaques tests
 
 
 ## 
+
+
+
+![delete-task-comleted](/Users/stevefallet/Dev/lumen-api/_docs/delete-task-comleted.png)
 
