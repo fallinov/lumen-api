@@ -20,6 +20,13 @@ class TaskController extends Controller
 
     public function create(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required',
+            'order' => 'required|integer|unique:task,order',
+            'completed' => 'boolean',
+            'due_date' => 'date_format:Y-m-d H:i:s' // ou simplement date
+        ]);
+
         $task = Task::create($request->all());
 
         return response()->json($task, 201);

@@ -97,4 +97,7 @@ $app->router->group([
     require __DIR__.'/../routes/web.php';
 });
 
+//Changement de la langue
+app('translator')->setLocale('fr');
+
 return $app;
