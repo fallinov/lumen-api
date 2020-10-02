@@ -517,3 +517,7 @@ _docs/delete-task-comleted.png)
 
 # CORS
 https://www.codementor.io/@chiemelachinedum/steps-to-enable-cors-on-a-lumen-api-backend-e5a0s1ecx
+
+# Authentification TOKEN
+
+https://jwt-auth.readthedocs.io/en/develop/quick-start/
