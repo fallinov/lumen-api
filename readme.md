@@ -52,7 +52,7 @@ Pour se connecter en SSH, il est nécessaire d'installer ou d'activer un logicie
 
 
 
-####Se connecter au serveur
+#### Se connecter au serveur
 
 Exécutez ensuite la commande suivante:
 
