@@ -3,6 +3,9 @@
 Sources :
 
 * https://auth0.com/blog/developing-restful-apis-with-lumen/
+* https://www.infomaniak.com/fr/support/faq/1941/se-connecter-en-ssh-et-utiliser-des-commandes-en-ligne
+* https://www.infomaniak.com/fr/support/faq/2108/configurer-changer-la-version-de-php-utilisee-en-ssh
+* https://fr.wikipedia.org/wiki/Secure_Shell
 
 ## Environnement de développement
 
@@ -12,13 +15,10 @@ Installer les outils suivants :
 * git : https://git-scm.com/
 * Composer : https://getcomposer.org/download/
 
-
-
 Créer un nouveau schéma `tasks` sur votre base de donnée MySQL.
 
-
-
 ## Installer Lumen
+### Sur un serveur local
 
 Exécuter la commande suivante dans le terminal pour créer un nouveau projet Lumen :
 
@@ -38,6 +38,121 @@ Démarrer le serveur php, et tetser le bon fonctionnement de lumen : http://loca
 php -S localhost:8000 -t public
 ```
 
+
+
+### Sur un serveur distant avec SSH 
+
+***Secure Shell*** (**SSH**) est à la fois un [programme informatique](https://fr.wikipedia.org/wiki/Programme_informatique) et un [protocole de communication](https://fr.wikipedia.org/wiki/Protocole_de_communication) sécurisé. 
+
+Pour se connecter en SSH, il est nécessaire d'installer ou d'activer un logiciel sur certains systèmes d'exploitation : 
+
+- Terminal (application déjà intégrée à macOS et Linux)
+- [PuTTY](http://www.putty.org/) (Windows)
+- Client SSH de Windows 10 (aide [en français](https://www.pcastuces.com/pratique/astuces/5235.htm) / [en anglais](https://www.howtogeek.com/336775/how-to-enable-and-use-windows-10s-built-in-ssh-commands/))
+
+
+
+####Se connecter au serveur
+
+Exécutez ensuite la commande suivante:
+
+```
+ssh username@server
+```
+
+- **Username** étant le nom d'utilisateur du compte FTP et
+- **Server** étant le serveur hôte (par ex.: xxxx.ftp.infomaniak.com).
+
+Pour savoir quelle commande est disponible et connaitre le chemin à utiliser, tapez la commande `whereis`. Exemple:
+
+```bash
+# MySQL
+whereis mysqlmysql: /opt/mysql/bin/mysql
+
+# Composer
+whereis composer
+composer: /usr/bin/composer /opt/php7.2/bin/composer.phar /opt/php7.2/bin/composer /opt/php7.0/bin/composer.phar /opt/php7.0/bin/composer
+
+```
+
+
+
+#### Configurer / changer la version de PHP utilisée en SSH
+
+1. Créer un fichier `.profile` s'il n'existe pas:
+
+```bash
+touch ~/.profile
+```
+
+2. éditer le fichier `.profile` :
+
+```bash
+nano ~/.profile
+```
+
+3. ajouter ce code à l'intérieur du fichier pour choisir la version de php souhaitée:
+
+```bash
+export PATH=/opt/php7.2/bin:$PATH
+```
+
+4. charger le fichier `.profile` :
+
+```bash
+source ~/.profile
+```
+
+5. vérifier la version de php:
+
+```bash
+php -v
+```
+
+
+
+#### Installer composer
+
+Avant d'installer composer tester s'il est présent sur votre serveur avec la commande suivante :
+
+```bash
+# Connaitre la version de composer
+composer -v
+# ou sur certains serveurs
+composer.phar -v
+
+# Pour savoir les version disponibles et son emplacement
+whereis composer
+```
+
+Si Composer n'est pas installé, il faudra le faire vous-même : https://getcomposer.org/ 
+
+
+
+#### Installer Lumen
+
+Exécuter la commande suivante dans le terminal pour créer un nouveau projet Lumen :
+
+```shell
+composer create-project --prefer-dist laravel/lumen lumen-api
+```
+
+
+
+#### Définir le dossier du site
+
+Dans la console d'administration de votre hébergeur, configurer le dossier `/lumen-api/public/` comme étant le dossier de votre site.
+
+![selection dossier site](_docs/selection-dossier-site.png)
+
+
+
+### Valider l'installation de Lumen
+
+Ouvrez votre la page d'accueil de votre API dans une navigateur et vous devriez avoir le résultat suivant. Hormis la version de Laravel qui sera certainement plus élevée 😅
+
+
+![selection dossier site](_docs/lumen-installation-ok.png)
 
 
 ### Eloquent et Facades
@@ -362,32 +477,40 @@ Autres infos :
 
 ## Liste des tâches
 
-![get-tasks](/Users/stevefallet/Dev/lumen-api/_docs/get-tasks.png)
+![get-tasks](
+_docs/get-tasks.png)
 
 ## Détail d'une tâche
 
-![get-task](/Users/stevefallet/Dev/lumen-api/_docs/get-task.png)
+![get-task](
+_docs/get-task.png)
 
 ### Tâche introuvable - erreur 404
 
-![get-task-error](/Users/stevefallet/Dev/lumen-api/_docs/get-task-error.png)
+![get-task-error](
+_docs/get-task-error.png)
 
 ## Ajouter une tâche
 
-![post-task](/Users/stevefallet/Dev/lumen-api/_docs/post-task.png)
+![post-task](
+_docs/post-task.png)
 
 ## Modifier une tâche
 
-![put-task](/Users/stevefallet/Dev/lumen-api/_docs/put-task.png)
+![put-task](
+_docs/put-task.png)
 
 ## Supprimer une tâche
 
-![delete-task](/Users/stevefallet/Dev/lumen-api/_docs/delete-task.png)
+![delete-task](
+_docs/delete-task.png)
 
 ## Terminer une tâche
 
-![put-task-comleted](/Users/stevefallet/Dev/lumen-api/_docs/put-task-comleted.png)
+![put-task-comleted](
+_docs/put-task-comleted.png)
 
 ## Ouvrir une tâche
 
-![delete-task-comleted](/Users/stevefallet/Dev/lumen-api/_docs/delete-task-comleted.png)
+![delete-task-comleted](
+_docs/delete-task-comleted.png)
