@@ -475,6 +475,20 @@ Autres infos :
 
 # Test des routes avec Postman
 
+Avant de commencer :
+* Créer des collections avec Postman
+* Créer des environnements 
+  * https://learning.postman.com/docs/sending-requests/managing-environments/
+* Récupéer des données d'une requête et travailler avec des variables
+    * Dans l'onglet `Test de la fenêtre d'une requête, on peut récupérer la réponse pour l'injecter dans une variable
+```javascript
+// Récupère la réponse de la requête
+let responseData = pm.response.json();
+// Crée une variable de collection et lui affecte une valeur
+pm.collectionVariables.set('TOKEN', responseData.access_token)
+```
+  * Récupérer une variable et l'utiliser dans Postman : `{{NOM_VARIABLE}}`
+
 ## Liste des tâches
 
 ![get-tasks](
