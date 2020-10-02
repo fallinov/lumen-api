@@ -521,3 +521,7 @@ https://www.codementor.io/@chiemelachinedum/steps-to-enable-cors-on-a-lumen-api-
 # Authentification TOKEN
 
 https://jwt-auth.readthedocs.io/en/develop/quick-start/
+
+# API Documentation Generator
+
+https://beyondco.de/docs/laravel-apidoc-generator/getting-started/installation
