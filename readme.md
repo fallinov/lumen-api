@@ -514,3 +514,6 @@ _docs/put-task-comleted.png)
 
 ![delete-task-comleted](
 _docs/delete-task-comleted.png)
+
+# CORS
+https://www.codementor.io/@chiemelachinedum/steps-to-enable-cors-on-a-lumen-api-backend-e5a0s1ecx
