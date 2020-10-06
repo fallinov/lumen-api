@@ -2,11 +2,31 @@
 
 ## Sommaire
 
-[TOC]
+[Sources](#sources)
+
+[Environnement de développement](#environnement-de-développement)
+
+[Installer Lumen](#installer-lumen)
+
+[Création de la base de données]()
+
+[Création du modèle `Task]()`
+
+[Création des routes de l'API]()
+
+[Création du controller `TaskController`]()
+
+[Test des routes avec Postman]()
+
+[CORS]()
+
+[Authentification TOKEN]()
+
+[API Documentation Generator]()
 
 
 
-## Sources :
+## Sources
 
 * https://auth0.com/blog/developing-restful-apis-with-lumen/
 * https://www.infomaniak.com/fr/support/faq/1941/se-connecter-en-ssh-et-utiliser-des-commandes-en-ligne
