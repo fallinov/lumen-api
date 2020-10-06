@@ -1,11 +1,19 @@
 # Création d'une API avec Lumen
 
-Sources :
+## Sommaire
+
+[TOC]
+
+
+
+## Sources :
 
 * https://auth0.com/blog/developing-restful-apis-with-lumen/
 * https://www.infomaniak.com/fr/support/faq/1941/se-connecter-en-ssh-et-utiliser-des-commandes-en-ligne
 * https://www.infomaniak.com/fr/support/faq/2108/configurer-changer-la-version-de-php-utilisee-en-ssh
 * https://fr.wikipedia.org/wiki/Secure_Shell
+
+
 
 ## Environnement de développement
 
@@ -492,7 +500,7 @@ pm.collectionVariables.set('TOKEN', responseData.access_token)
 ## Liste des tâches
 
 ![get-tasks](
-_docs/get-tasks.png)
+_docs/get-tasks.png)~~~~
 
 ## Détail d'une tâche
 
