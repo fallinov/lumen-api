@@ -10,7 +10,7 @@
 
 [Création de la base de données](#création-de-la-base-de-données)
 
-[Création du modèle `Task](#création-du-modèle-task)`
+[Création du modèle `Task`](#création-du-modèle-task)
 
 [Création des routes de l'API](#création-des-routes-de-lapi)
 
