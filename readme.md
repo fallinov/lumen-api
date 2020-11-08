@@ -13,9 +13,7 @@ Installer les outils suivants :
 * Composer : https://getcomposer.org/download/
 
 
-
 Créer un nouveau schéma `tasks` sur votre base de donnée MySQL.
-
 
 
 ## Installer Lumen
@@ -79,8 +77,6 @@ Ouvrir le fichier `bootstrap/app.php` et décommenter les lignes suivantes :
 // $app->withFacades();
 // $app->withEloquent();
 ```
-
-
 
 ## Création de la base de données
 
