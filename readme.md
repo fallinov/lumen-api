@@ -403,12 +403,37 @@ $factory->define(App\Task::class, function (Faker\Generator $faker) {
     ];
 });
 ```
+Afin de pouvoir implémenter des données dans notre base de donnée nous allons appeler notre factory dans notre **Seed**.
 
+### Définir une seed
 
+Les seeds sont définies dans `database/seed/DatabaseSeeder.php`
 
+### DatabaseSeeder.php
 
+```<?php
 
+use App\Task;
+use Illuminate\Database\Seeder;
+class DatabaseSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        factory(Task::class,10)->create();
+    }
+}
+```
+Exécuter la ligne de commande pour implémenter notre base de donnée :
 
+```shell
+php artisan db:seed
+```
+Notre base de donnée est désormais implémenter de 10 lignes de données.
 
 ```php
 use DatabaseMigrations; // Rollback la BD après chaque tests => Supprime les tables
@@ -742,73 +767,6 @@ PHPUnit 7.5.8 by Sebastian Bergmann and contributors.
 Time: 52 ms, Memory: 8.00 MB
 
 OK (1 test, 1 assertion)
-```
-
-
-
-
-
-### Tester la base
-
-Pour tester une base de données, il faut avant tout la remplir avec des données de tests, ce que nous ferons avec en créant des **Factories**.
-
-#### Définir une factory
-
-Les factories sont définies dans  `database/factories/ModelFactory.php`
-
-Ce fichier ce compose d'une factory de démonstration pour le modèle `User`.
-
-Lumen utiliser la librairie `Faker` pour générer des données aléatoires qui rempliront la base.
-
-Documentation de Faker : https://github.com/fzaninotto/Faker
-
-```php
-<?php
-
-/*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| Here you may define all of your model factories. Model factories give
-| you a convenient way to create models for testing and seeding your
-| database. Just tell the factory how a default model should look.
-|
-*/
-
-$factory->define(App\User::class, function (Faker\Generator $faker) {
-    return [
-        'name' => $faker->name,
-        'email' => $faker->email,
-    ];
-});
-```
-
-Nous allons définir une factory pour notre modèle `Task` en ajoutant le code suivant à la fin du fichier `ModelFactory.php`.
-
-```php
-// Définition d'une factory pour le modèle Task
-$factory->define(App\Task::class, function (Faker\Generator $faker) {
-    return [
-        'title' => $faker->sentence, // Phrase avec texte aléatoire
-        'content' => $faker->paragraph, // Paragraphe de textes aléatoires
-        'order' => $faker->numberBetween(1,100), // Nombre aléatoire entre 1 et 100
-        'completed' => (int) $faker->boolean, // Booléan aléatoire converti en entier
-        'due_date' => $faker->date('Y-m-d H:i:s') // Date aléatoire au format MySQL
-    ];
-});
-```
-
-
-
-
-
-
-
-```php
-use DatabaseMigrations; // Rollback la BD après chaque tests => Supprime les tables
-// OU 
-use DatabaseTransactions; // Rollback les transactions de chaques tests
 ```
 
 
