@@ -411,7 +411,8 @@ Les seeds sont définies dans `database/seed/DatabaseSeeder.php`
 
 ### DatabaseSeeder.php
 
-```<?php
+```php
+<?php
 
 use App\Task;
 use Illuminate\Database\Seeder;
@@ -428,12 +429,12 @@ class DatabaseSeeder extends Seeder
     }
 }
 ```
-Exécuter la ligne de commande pour implémenter notre base de donnée :
+Exécuter la ligne de commande pour remplir notre base de donnée :
 
 ```shell
 php artisan db:seed
 ```
-Notre base de donnée est désormais implémenter de 10 lignes de données.
+Notre base de donnée contient désormais 10 tâches.
 
 ```php
 use DatabaseMigrations; // Rollback la BD après chaque tests => Supprime les tables
