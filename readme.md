@@ -292,6 +292,13 @@ php artisan migrate
 
 Vérifier que la table `task` a correctement été créée dans votre base de données.
 
+Pour recréer la base en partant de zéro. 
+**!!! Attention vous perdrez toutes vos données !!!**
+
+````shell
+php artisan migrate:fresh
+````
+
 ![bd-table-task](_docs/bd-table-task.png)
 
 
