@@ -770,7 +770,10 @@ Time: 52 ms, Memory: 8.00 MB
 OK (1 test, 1 assertion)
 ```
 
+# 404 NOT FOUND pour findOrFail
 
+* https://stackoverflow.com/questions/47093505/custom-findorfail-for-the-api-routes
+* https://github.com/laravel/framework/issues/23742
 
 # CORS
 https://www.codementor.io/@chiemelachinedum/steps-to-enable-cors-on-a-lumen-api-backend-e5a0s1ecx
